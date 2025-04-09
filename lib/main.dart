@@ -1,3 +1,5 @@
+import 'package:cx_app/resources/colors.dart';
+import 'package:cx_app/view/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,18 +14,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        scaffoldBackgroundColor: Appcolors.lighBackgroundColor,
+        iconTheme: IconThemeData(color: Appcolors.textColor),
+        iconButtonTheme: IconButtonThemeData(
+          style: ButtonStyle(
+            iconColor: WidgetStatePropertyAll(Appcolors.textColor),
+          ),
+        ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const HomePage(),
+      home: HomeScreen(),
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('Home Page')));
   }
 }
