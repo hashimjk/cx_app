@@ -1,9 +1,20 @@
 import 'package:cx_app/resources/colors.dart';
 import 'package:cx_app/view/home_screen.dart';
+import 'package:cx_app/view_model/currency_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => CurrencyViewModel()..fetchCurrencyData(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
