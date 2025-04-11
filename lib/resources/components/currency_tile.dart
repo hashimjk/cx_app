@@ -1,5 +1,7 @@
+import 'package:cx_app/view_model/CustomCurrency_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:provider/provider.dart';
 
 class CurrencyTile extends StatelessWidget {
   final int index;
@@ -11,7 +13,7 @@ class CurrencyTile extends StatelessWidget {
   final VoidCallback onTap;
 
   const CurrencyTile({
-    Key? key,
+    super.key,
     required this.index,
     required this.context,
     required this.currencyCode,
@@ -19,7 +21,7 @@ class CurrencyTile extends StatelessWidget {
     required this.currencyName,
     required this.amount,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class CurrencyTile extends StatelessWidget {
         ),
       ),
       onDismissed: (direction) {
+        Provider.of<CurrencyProvider>(context).removeCurrency(currencyCode);
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('$currencyCode removed')));

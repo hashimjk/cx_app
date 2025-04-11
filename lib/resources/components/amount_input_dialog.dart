@@ -5,10 +5,10 @@ class AmountInputDialog extends StatelessWidget {
   final Function(double) onAmountSubmit;
 
   const AmountInputDialog({
-    Key? key,
+    super.key,
     required this.currencyCode,
     required this.onAmountSubmit,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

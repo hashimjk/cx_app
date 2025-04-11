@@ -1,13 +1,10 @@
-import 'package:cx_app/repository/custom_currency_repo.dart';
 import 'package:cx_app/resources/components/amount_input_dialog.dart';
 import 'package:cx_app/resources/components/bottom_nav_bar.dart';
 import 'package:cx_app/resources/components/currency_tile.dart';
 import 'package:cx_app/utils/currency_util.dart';
-import 'package:cx_app/utils/utils.dart';
 import 'package:cx_app/view/add_currency_screen.dart';
 import 'package:cx_app/view_model/CustomCurrency_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:country_flags/country_flags.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
           currencyCode: currencyCode,
           onAmountSubmit: (enteredAmount) {
             currencyProvider.updateAmount(currencyCode, enteredAmount);
+            currencyProvider.updateData(currencyCode, enteredAmount);
           },
         );
       },
@@ -55,6 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
                 listen: false,
               ).addCurrency(currencyCode);
+              //for Shared Pref
+              Provider.of<CurrencyProvider>(
+                context,
+                listen: false,
+              ).addData(currencyCode);
               //fetching exchange rate based on selected list tile/ currencey.
               Provider.of<CurrencyProvider>(
                 context,
