@@ -17,11 +17,7 @@ class CurrencyViewModel extends ChangeNotifier {
       _currencyRepo
           .getCurrency()
           .then((val) {
-            if (val != null) {
-              setCurrencyList(ApiResponse.completed(val));
-            } else {
-              setCurrencyList(ApiResponse.error("Failed to fetch data"));
-            }
+            setCurrencyList(ApiResponse.completed(val));
           })
           .onError((err, stacktrace) {
             setCurrencyList(ApiResponse.error(err.toString()));

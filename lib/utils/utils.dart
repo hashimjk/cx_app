@@ -8,10 +8,14 @@ class Utils {
       context: context,
       flushbar: Flushbar(
         message: message,
-        forwardAnimationCurve: Curves.linear,
+        forwardAnimationCurve: Curves.easeInOut,
         duration: Duration(seconds: 2),
-        flushbarPosition: FlushbarPosition.TOP,
+        flushbarPosition: FlushbarPosition.BOTTOM,
       )..show(context),
     );
+  }
+
+  static String getFlagCode(String currencyCode) {
+    return currencyCode.substring(0, 2);
   }
 }
